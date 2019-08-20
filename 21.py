@@ -13,10 +13,11 @@
 """
 
 
-class FriendlyNumbers:
+class AmicableNumbers:
     def __init__(self):
         self.prime_numbers = []
         self.set_prime_numbers(10000)
+        self.sum_div_list = [0, 0, 0]
 
     def set_prime_numbers(self, n):
         self.prime_numbers = list(range(3, n, 2))
@@ -49,11 +50,28 @@ class FriendlyNumbers:
         enumeration_dividers(prime_arr)
         return div_sets - {n}
 
+    def set_sum_div_list(self):
+        for i in range(3, 10000):
+            sum_div = sum(self.search_all_dividers(i))
+            if sum_div != 1 and 10000 >= sum_div != i:
+                self.sum_div_list.append(
+                    sum(amicable_numbers.search_all_dividers(i)))
+            else:
+                self.sum_div_list.append(0)
+
+    def get_sum_amicable_numbers(self):
+        sum_amicable_numbers = 0
+        for i in range(3, 10000):
+            if self.sum_div_list[i] != 0:
+                if self.sum_div_list[self.sum_div_list[i]] == i:
+                    sum_amicable_numbers += i + self.sum_div_list[i]
+                    self.sum_div_list[self.sum_div_list[i]] = 0
+                    self.sum_div_list[i] = 0
+        return sum_amicable_numbers
+
 
 if __name__ == '__main__':
-    friendly_numbers = FriendlyNumbers()
-    sum_div_list = []
-    for i in range(3, 10000):
-        sum_div_list.append(sum(friendly_numbers.search_all_dividers(i)))
+    amicable_numbers = AmicableNumbers()
+    amicable_numbers.set_sum_div_list()
     print(__doc__)
-    print('Ответ:', sum_div_list)
+    print('Ответ:', amicable_numbers.get_sum_amicable_numbers())
