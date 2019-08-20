@@ -37,14 +37,14 @@ class TotalPoints:
 
     def set_total_points(self):
         for i in range(len(self._names)):
-            self._total_points += i+1 * self.sum_alph_values(self._names[i])
+            self._total_points += (i+1) * self.sum_alph_values(self._names[i])
 
     def get_total_points(self):
         return self._total_points
 
     def __str__(self):
         return str(self._total_points)
-            
+
 
 if __name__ == '__main__':
     points = TotalPoints()
@@ -52,9 +52,5 @@ if __name__ == '__main__':
     points.sort_list()
     points.set_total_points()
     print(__doc__)
-    print('Ответ:', points)
-
-
-
-
+    print('Ответ:', points.get_total_points())
 
